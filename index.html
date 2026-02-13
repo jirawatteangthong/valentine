@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💗</title>
+
+<style>
+body{
+  font-family: Arial;
+  text-align:center;
+  background:#ffe6f0;
+  padding-top:80px;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  width:300px;
+  margin:auto;
+}
+button{
+  padding:10px 20px;
+  margin:10px;
+  border:none;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>สุขสันต์วันวาเลนไทน์นะครับ 💖</h2>
+  <p>พี่อยากขอหนูเป็นแฟนแบบจริงจัง 😆🫶🏻</p>
+
+  <button onclick="yes()">ตกลง</button>
+  <button onclick="no()">No</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+function yes(){
+  document.getElementById("result").innerHTML="เย้ เราเป็นกันแล้วนะ😘💕";
+}
+function no(){
+  document.getElementById("result").innerHTML="ไม่เป็นไรนะจะตามจีบจนกว่าจะได้เป็นแฟน 😬";
+}
+</script>
+
+</body>
+</html>
