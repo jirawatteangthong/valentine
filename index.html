@@ -153,13 +153,13 @@
             <div class="progress-container">
                 <div id="myBar" class="progress-bar"></div>
             </div>
-            <p id="loadText">กำลังโหลดความน่ารัก 100%</p>
+            <p id="loadText">กำลังโหลดความรัก 100%</p>
         </div>
 
         <div id="page2" class="page">
             <span style="font-size: 3rem;">🔐</span>
             <h2>ใส่รหัสผ่านเพื่อไปต่อ</h2>
-            <p style="font-size: 0.9rem; color: #888;">(วันเกิดหนูไง 0210)</p>
+            <p style="font-size: 0.9rem; color: #888;">(วันเกิดหนูอะ 0210)</p>
             <input type="password" id="passInput" readonly placeholder="••••">
             <div class="passcode-grid" id="numpad"></div>
             <button onclick="checkPass()" style="width: 100%; margin-top: 20px;">ตกลง</button>
@@ -167,7 +167,7 @@
 
         <div id="page3" class="page">
             <span style="font-size: 5rem;">✨</span>
-            <h1>เธอเก่งที่สุดเลยค้าบ</h1>
+            <h1>เก่งที่สุดเลยค้าบ</h1>
             <p>พร้อมจะดูขั้นต่อไปหรือยัง?</p>
             <button onclick="goToLoading(4, 10000)">ไปกันต่อ</button>
         </div>
@@ -176,7 +176,7 @@
             <span style="font-size: 4rem;">💖</span>
             <h1>หนูดาครับ...</h1>
             <p>ขอบคุณที่อยู่ด้วยกันนะ</p>
-            <h2 style="color: var(--pink-dark);">วันนี้วันแห่งความรักพี่เลยอยากจะขอหนูเป็นแฟนกับพี่นะ☺️</h2>
+            <h2 style="color: var(--pink-dark);">วันนี้วันแห่งความรักพี่เลยอยากจะขอหนูเป็นแฟนกับพี่ได้มั้ยครับ☺️</h2>
             <div style="display: flex; justify-content: space-around; margin-top: 30px;">
                 <button onclick="finalPage()">Yes</button>
                 <button class="no-btn" onmouseover="moveNo(this)" onclick="finalPage()">No</button>
@@ -267,7 +267,7 @@
         }
 
         function typeEffect() {
-            const text = "พี่สัญญาว่าจะรักหนูตลอดไปนะครับ🫶🏻...";
+            const text = "พี่สัญญาว่าจะรักหนูตลอดไปนะครับ🫶🏻😘...";
             let i = 0;
             const target = document.getElementById("typing-text");
             function typing() {
