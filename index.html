@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise for You ❤️</title>
+    <title>Special Surprise ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,22 +31,23 @@
             padding: 2rem;
             border-radius: 30px;
             box-shadow: 0 10px 25px rgba(255, 133, 161, 0.2);
-            width: 90%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 380px;
             border: 5px solid var(--pink-light);
             position: relative;
         }
 
         .page { display: none; }
-        .active { display: block; animation: fadeIn 0.8s; }
+        .active { display: block; animation: fadeIn 0.6s ease-in-out; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 { color: var(--pink-dark); font-size: 1.8rem; }
-        
+        h1 { color: var(--pink-dark); font-size: 1.6rem; margin-top: 15px; }
+        p { font-size: 1.1rem; line-height: 1.5; }
+
         button {
             background-color: var(--pink-main);
             color: white;
@@ -57,140 +58,154 @@
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Itim', cursive;
-            margin-top: 20px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(255, 133, 161, 0.3);
         }
 
-        button:hover { background-color: var(--pink-dark); transform: scale(1.1); }
+        button:hover { background-color: var(--pink-dark); transform: scale(1.05); }
 
         /* Loading Bar */
         .progress-container {
             width: 100%;
-            background: #eee;
+            background: #f0f0f0;
             border-radius: 20px;
-            margin: 20px 0;
-            height: 20px;
+            margin: 25px 0;
+            height: 18px;
             overflow: hidden;
+            border: 1px solid #ddd;
         }
         .progress-bar {
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, var(--pink-light), var(--pink-dark));
-            transition: width 0.1s;
         }
 
-        /* Passcode Input */
+        /* Passcode Style */
+        #passInput {
+            width: 80%;
+            padding: 12px;
+            text-align: center;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            border: 2px solid var(--pink-light);
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+            background: #fffafa;
+            color: var(--pink-dark);
+        }
+
         .passcode-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 10px;
         }
         .num-btn {
-            background: #fff;
-            border: 2px solid var(--pink-light);
+            background: white;
+            border: 1px solid var(--pink-light);
             color: var(--pink-dark);
             padding: 15px;
-            border-radius: 15px;
-            font-size: 1.2rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            margin-top: 0;
+            box-shadow: none;
         }
+        .num-btn:active { background: var(--pink-light); color: white; }
 
-        input[type="password"] {
-            width: 80%;
-            padding: 10px;
-            text-align: center;
-            font-size: 1.5rem;
-            border-radius: 10px;
-            border: 2px solid var(--pink-light);
-            margin-bottom: 10px;
-            letter-spacing: 5px;
-        }
+        .no-btn { position: relative; background-color: #ccc; }
+        .no-btn:hover { background-color: #999; }
 
-        .couple-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--pink-light);
-            margin-bottom: 10px;
-        }
-
-        .no-btn { position: relative; }
+        .icon-box { margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div id="page1" class="page active">
-            <img src="https://api.iconify.design/noto:wrapped-gift.svg" width="80">
+            <div class="icon-box">
+                <span style="font-size: 4rem;">🎁</span>
+            </div>
             <h1>Happy Valentine's Day</h1>
-            <p>มีอะไรจะให้ดูแหละ...</p>
-            <button onclick="goToLoading(2, 3000)">START</button>
+            <p>มีบางอย่างจะบอกแหละ...<br>พร้อมหรือยังคะ?</p>
+            <button onclick="goToLoading(2, 10000)">START</button>
         </div>
 
         <div id="loadingPage" class="page">
-            <h1 id="loadText">Loading......</h1>
+            <h1 id="loadTitle">Loading......</h1>
             <div class="progress-container">
                 <div id="myBar" class="progress-bar"></div>
             </div>
-            <p>รอแป๊บน้าาา...</p>
+            <p id="loadText">รอแป๊บน้าาา กำลังเตรียมความหวาน...</p>
         </div>
 
         <div id="page2" class="page">
-            <img src="couple.jpg" class="couple-img" alt="คู่รัก">
-            <p>ใส่รหัสผ่าน : วันเกิดเรา (0210)</p>
-            <input type="password" id="passInput" readonly>
+            <div class="icon-box">
+                <span style="font-size: 3rem;">🔒</span>
+            </div>
+            <h2 style="color: var(--pink-dark); margin-bottom: 5px;">กรุณาใส่รหัสผ่าน</h2>
+            <p style="font-size: 0.9rem; color: #888;">คำใบ้ : วันเกิดเรา (0210)</p>
+            
+            <input type="password" id="passInput" readonly placeholder="••••">
+            
             <div class="passcode-grid" id="numpad">
                 </div>
-            <button onclick="checkPass()">ตกลง</button>
+            
+            <button onclick="checkPass()" style="width: 100%; margin-top: 20px;">ยืนยันรหัสผ่าน</button>
         </div>
 
         <div id="page3" class="page">
-            <img src="https://api.iconify.design/noto:smiling-face-with-heart-eyes.svg" width="80">
+            <div class="icon-box">
+                <span style="font-size: 4rem;">⭐</span>
+            </div>
             <h1>รหัสผ่านถูกต้อง</h1>
             <h2 style="color: var(--pink-dark);">เธอเก่งที่สุดเลยค้าบ</h2>
-            <button onclick="goToLoading(4, 3000)">ไปกันต่อ</button>
+            <button onclick="goToLoading(4, 10000)">ไปกันต่อ</button>
         </div>
 
         <div id="page4" class="page">
+            <div class="icon-box">
+                <span style="font-size: 3rem;">💖</span>
+            </div>
             <h1>หนูครับ...</h1>
             <p>ขอบคุณที่อยู่ข้างกันมาตลอดนะ</p>
             <p>วันนี้พี่อยากจะถามว่า...</p>
-            <h2 style="color: var(--pink-dark);">เป็นแฟนกับพี่นะ?</h2>
-            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+            <h2 style="color: var(--pink-dark); font-size: 1.8rem;">เป็นแฟนกับพี่นะ?</h2>
+            <div style="display: flex; justify-content: space-around; margin-top: 30px;">
                 <button onclick="finalPage()">Yes</button>
                 <button class="no-btn" onmouseover="moveNo(this)" onclick="finalPage()">No</button>
             </div>
         </div>
 
         <div id="page5" class="page">
-            <img src="https://api.iconify.design/noto:partying-face.svg" width="80">
+            <div class="icon-box">
+                <span style="font-size: 4rem;">🎉</span>
+            </div>
             <h1>เย้! เราเป็นแฟนกันแล้วนะ</h1>
             <p>พี่สัญญาว่าจะรักหนูตลอดไป</p>
-            <h2 style="font-size: 2rem;">👨🏻‍🦰🫶🏻 👩🏻‍⚕️</h2>
+            <h2 style="font-size: 2.5rem; margin-top: 20px;">👨🏻‍🦰🫶🏻 👩🏻‍⚕️</h2>
         </div>
     </div>
 
     <script>
+        let nextTargetPage = 0;
+
         // สร้างปุ่มตัวเลข
         const numpad = document.getElementById('numpad');
-        for(let i=1; i<=9; i++) {
+        const layout = ['1','2','3','4','5','6','7','8','9','C','0','X'];
+        
+        layout.forEach(val => {
             let btn = document.createElement('button');
             btn.className = 'num-btn';
-            btn.innerText = i;
-            btn.onclick = () => document.getElementById('passInput').value += i;
+            btn.innerText = val === 'X' ? '←' : val;
+            
+            btn.onclick = () => {
+                const input = document.getElementById('passInput');
+                if(val === 'C') input.value = '';
+                else if(val === 'X') input.value = input.value.slice(0, -1);
+                else if(input.value.length < 4) input.value += val;
+            };
             numpad.appendChild(btn);
-        }
-        let zeroBtn = document.createElement('button');
-        zeroBtn.className = 'num-btn';
-        zeroBtn.innerText = '0';
-        zeroBtn.onclick = () => document.getElementById('passInput').value += '0';
-        numpad.appendChild(zeroBtn);
-
-        let clearBtn = document.createElement('button');
-        clearBtn.className = 'num-btn';
-        clearBtn.innerText = 'C';
-        clearBtn.onclick = () => document.getElementById('passInput').value = '';
-        numpad.appendChild(clearBtn);
+        });
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -198,21 +213,27 @@
         }
 
         function goToLoading(nextPage, duration) {
+            nextTargetPage = nextPage;
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('loadingPage').classList.add('active');
             
+            // เปลี่ยนข้อความตามหน้า
+            if(nextPage === 4) {
+                document.getElementById('loadText').innerText = "กำลังพาไปหาความลับ...";
+            }
+
             let elem = document.getElementById("myBar");
             let width = 0;
-            let interval = duration / 100;
-            let id = setInterval(frame, interval);
+            let step = 100 / (duration / 50); 
+            let id = setInterval(frame, 50);
 
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
-                    showPage(nextPage);
+                    showPage(nextTargetPage);
                     elem.style.width = '0%';
                 } else {
-                    width++;
+                    width += step;
                     elem.style.width = width + '%';
                 }
             }
@@ -223,18 +244,19 @@
             if(pass === "0210") {
                 showPage(3);
             } else {
-                alert("รหัสผิดนะจ๊ะ ลองใหม่ๆ");
+                alert("รหัสผ่านไม่ถูกต้องนะค๊าบ ลองใหม่อีกทีนะ");
                 document.getElementById('passInput').value = '';
             }
         }
 
         function moveNo(btn) {
-            // ปุ่ม No จะหนีไปที่อื่น ทำให้กดไม่ได้จริงๆ
+            // ปุ่ม No จะเลื่อนหนีไปรอบๆ เฉพาะหน้าจอมือถือ/คอม
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.position = 'absolute';
+            btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
+            btn.style.zIndex = '999';
         }
 
         function finalPage() {
