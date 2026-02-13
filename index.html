@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Surprise ❤️</title>
+    <title>Our Special Day ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,52 +27,53 @@
 
         .container {
             text-align: center;
-            background: white;
-            padding: 2rem;
-            border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(255, 133, 161, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(255, 133, 161, 0.25);
             width: 85%;
-            max-width: 380px;
-            border: 5px solid var(--pink-light);
+            max-width: 400px;
+            border: 6px solid var(--pink-light);
             position: relative;
+            z-index: 10;
         }
 
         .page { display: none; }
-        .active { display: block; animation: fadeIn 0.6s ease-in-out; }
+        .active { display: block; animation: fadeIn 0.8s ease-out; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        h1 { color: var(--pink-dark); font-size: 1.6rem; margin-top: 15px; }
-        p { font-size: 1.1rem; line-height: 1.5; }
+        h1 { color: var(--pink-dark); font-size: 1.8rem; margin-top: 10px; }
+        p { font-size: 1.1rem; line-height: 1.6; }
 
         button {
             background-color: var(--pink-main);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 35px;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Itim', cursive;
             margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(255, 133, 161, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 133, 161, 0.4);
         }
 
-        button:hover { background-color: var(--pink-dark); transform: scale(1.05); }
+        button:hover { background-color: var(--pink-dark); transform: scale(1.1); }
 
-        /* Loading Bar */
+        /* Loading Bar Styles */
         .progress-container {
             width: 100%;
-            background: #f0f0f0;
+            background: #eee;
             border-radius: 20px;
             margin: 25px 0;
-            height: 18px;
+            height: 20px;
             overflow: hidden;
-            border: 1px solid #ddd;
+            border: 2px solid var(--pink-light);
         }
         .progress-bar {
             width: 0%;
@@ -80,96 +81,102 @@
             background: linear-gradient(90deg, var(--pink-light), var(--pink-dark));
         }
 
-        /* Passcode Style */
+        /* Passcode Styles */
         #passInput {
-            width: 80%;
+            width: 85%;
             padding: 12px;
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             border-radius: 15px;
-            border: 2px solid var(--pink-light);
+            border: 3px solid var(--pink-light);
             margin-bottom: 20px;
-            letter-spacing: 8px;
-            background: #fffafa;
+            letter-spacing: 10px;
             color: var(--pink-dark);
+            background: #fff;
         }
-
         .passcode-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-top: 10px;
         }
         .num-btn {
             background: white;
-            border: 1px solid var(--pink-light);
+            border: 2px solid var(--pink-light);
             color: var(--pink-dark);
             padding: 15px;
-            border-radius: 12px;
-            font-size: 1.3rem;
+            border-radius: 15px;
+            font-size: 1.4rem;
             margin-top: 0;
             box-shadow: none;
         }
         .num-btn:active { background: var(--pink-light); color: white; }
 
-        .no-btn { position: relative; background-color: #ccc; }
-        .no-btn:hover { background-color: #999; }
+        /* No Button Magic */
+        .no-btn { position: relative; background-color: #bdc3c7; }
 
-        .icon-box { margin-bottom: 10px; }
+        /* Heart Animation */
+        .heart-float {
+            position: fixed;
+            font-size: 25px;
+            color: #ff4d6d;
+            user-select: none;
+            z-index: 5;
+            pointer-events: none;
+            animation: moveUp 4s linear forwards;
+        }
+        @keyframes moveUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Typing Effect */
+        #typing-text {
+            color: var(--pink-dark);
+            font-weight: bold;
+            font-size: 1.3rem;
+            min-height: 1.5em;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div id="page1" class="page active">
-            <div class="icon-box">
-                <span style="font-size: 4rem;">🎁</span>
-            </div>
+            <span style="font-size: 5rem;">🎁</span>
             <h1>Happy Valentine's Day</h1>
-            <p>มีบางอย่างจะบอกแหละ...<br>พร้อมหรือยังคะ?</p>
+            <p>มีเซอร์ไพรส์รออยู่นะคะ<br>ลองกดดูสิ!</p>
             <button onclick="goToLoading(2, 10000)">START</button>
         </div>
 
         <div id="loadingPage" class="page">
-            <h1 id="loadTitle">Loading......</h1>
+            <h1 id="loadTitle">กรุณารอสักครู่...</h1>
             <div class="progress-container">
                 <div id="myBar" class="progress-bar"></div>
             </div>
-            <p id="loadText">รอแป๊บน้าาา กำลังเตรียมความหวาน...</p>
+            <p id="loadText">กำลังโหลดความน่ารัก 100%</p>
         </div>
 
         <div id="page2" class="page">
-            <div class="icon-box">
-                <span style="font-size: 3rem;">🔒</span>
-            </div>
-            <h2 style="color: var(--pink-dark); margin-bottom: 5px;">กรุณาใส่รหัสผ่าน</h2>
-            <p style="font-size: 0.9rem; color: #888;">คำใบ้ : วันเกิดเรา (0210)</p>
-            
+            <span style="font-size: 3rem;">🔐</span>
+            <h2>ใส่รหัสผ่านเพื่อไปต่อ</h2>
+            <p style="font-size: 0.9rem; color: #888;">(วันเกิดเราไง 0210)</p>
             <input type="password" id="passInput" readonly placeholder="••••">
-            
-            <div class="passcode-grid" id="numpad">
-                </div>
-            
-            <button onclick="checkPass()" style="width: 100%; margin-top: 20px;">ยืนยันรหัสผ่าน</button>
+            <div class="passcode-grid" id="numpad"></div>
+            <button onclick="checkPass()" style="width: 100%; margin-top: 20px;">ตกลง</button>
         </div>
 
         <div id="page3" class="page">
-            <div class="icon-box">
-                <span style="font-size: 4rem;">⭐</span>
-            </div>
-            <h1>รหัสผ่านถูกต้อง</h1>
-            <h2 style="color: var(--pink-dark);">เธอเก่งที่สุดเลยค้าบ</h2>
+            <span style="font-size: 5rem;">✨</span>
+            <h1>เธอเก่งที่สุดเลยค้าบ</h1>
+            <p>พร้อมจะดูขั้นต่อไปหรือยัง?</p>
             <button onclick="goToLoading(4, 10000)">ไปกันต่อ</button>
         </div>
 
         <div id="page4" class="page">
-            <div class="icon-box">
-                <span style="font-size: 3rem;">💖</span>
-            </div>
+            <span style="font-size: 4rem;">💖</span>
             <h1>หนูครับ...</h1>
-            <p>ขอบคุณที่อยู่ข้างกันมาตลอดนะ</p>
-            <p>วันนี้พี่อยากจะถามว่า...</p>
-            <h2 style="color: var(--pink-dark); font-size: 1.8rem;">เป็นแฟนกับพี่นะ?</h2>
+            <p>ขอบคุณที่อยู่ด้วยกันนะ</p>
+            <h2 style="color: var(--pink-dark);">เป็นแฟนกับพี่นะ?</h2>
             <div style="display: flex; justify-content: space-around; margin-top: 30px;">
                 <button onclick="finalPage()">Yes</button>
                 <button class="no-btn" onmouseover="moveNo(this)" onclick="finalPage()">No</button>
@@ -177,90 +184,100 @@
         </div>
 
         <div id="page5" class="page">
-            <div class="icon-box">
-                <span style="font-size: 4rem;">🎉</span>
-            </div>
+            <span style="font-size: 5rem; animation: pulse 1s infinite;">🥰</span>
             <h1>เย้! เราเป็นแฟนกันแล้วนะ</h1>
-            <p>พี่สัญญาว่าจะรักหนูตลอดไป</p>
-            <h2 style="font-size: 2.5rem; margin-top: 20px;">👨🏻‍🦰🫶🏻 👩🏻‍⚕️</h2>
+            <div id="typing-text"></div>
+            <h2 style="font-size: 3rem; margin-top: 20px;">👨🏻‍🦰🫶🏻 👩🏻‍⚕️</h2>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 20px;">Happy Valentine's Day<br>14 February 2026</p>
         </div>
     </div>
 
     <script>
-        let nextTargetPage = 0;
+        let targetPage = 0;
 
-        // สร้างปุ่มตัวเลข
+        // สร้าง Numpad
         const numpad = document.getElementById('numpad');
-        const layout = ['1','2','3','4','5','6','7','8','9','C','0','X'];
-        
-        layout.forEach(val => {
+        ['1','2','3','4','5','6','7','8','9','C','0','←'].forEach(v => {
             let btn = document.createElement('button');
             btn.className = 'num-btn';
-            btn.innerText = val === 'X' ? '←' : val;
-            
+            btn.innerText = v;
             btn.onclick = () => {
-                const input = document.getElementById('passInput');
-                if(val === 'C') input.value = '';
-                else if(val === 'X') input.value = input.value.slice(0, -1);
-                else if(input.value.length < 4) input.value += val;
+                let input = document.getElementById('passInput');
+                if(v === 'C') input.value = '';
+                else if(v === '←') input.value = input.value.slice(0, -1);
+                else if(input.value.length < 4) input.value += v;
             };
             numpad.appendChild(btn);
         });
 
-        function showPage(pageId) {
+        function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page' + pageId).classList.add('active');
+            document.getElementById('page' + id).classList.add('active');
         }
 
-        function goToLoading(nextPage, duration) {
-            nextTargetPage = nextPage;
+        function goToLoading(next, time) {
+            targetPage = next;
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('loadingPage').classList.add('active');
             
-            // เปลี่ยนข้อความตามหน้า
-            if(nextPage === 4) {
-                document.getElementById('loadText').innerText = "กำลังพาไปหาความลับ...";
-            }
-
-            let elem = document.getElementById("myBar");
+            let bar = document.getElementById("myBar");
             let width = 0;
-            let step = 100 / (duration / 50); 
-            let id = setInterval(frame, 50);
-
-            function frame() {
+            let speed = 100 / (time / 100);
+            let timer = setInterval(() => {
                 if (width >= 100) {
-                    clearInterval(id);
-                    showPage(nextTargetPage);
-                    elem.style.width = '0%';
+                    clearInterval(timer);
+                    showPage(targetPage);
+                    bar.style.width = '0%';
                 } else {
-                    width += step;
-                    elem.style.width = width + '%';
+                    width += speed;
+                    bar.style.width = width + '%';
                 }
-            }
+            }, 100);
         }
 
         function checkPass() {
-            const pass = document.getElementById('passInput').value;
-            if(pass === "0210") {
-                showPage(3);
-            } else {
-                alert("รหัสผ่านไม่ถูกต้องนะค๊าบ ลองใหม่อีกทีนะ");
-                document.getElementById('passInput').value = '';
-            }
+            if(document.getElementById('passInput').value === "0210") showPage(3);
+            else { alert("รหัสผิดน้าาา"); document.getElementById('passInput').value = ''; }
         }
 
         function moveNo(btn) {
-            // ปุ่ม No จะเลื่อนหนีไปรอบๆ เฉพาะหน้าจอมือถือ/คอม
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
-            btn.style.zIndex = '999';
         }
 
         function finalPage() {
             showPage(5);
+            startHearts();
+            typeEffect();
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.className = 'heart-float';
+                h.innerText = ['❤️','💖','💕','💗'][Math.floor(Math.random()*4)];
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.animationDuration = (Math.random()*2 + 2) + 's';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 4000);
+            }, 200);
+        }
+
+        function typeEffect() {
+            const text = "พี่สัญญาว่าจะรักหนูตลอดไปนะคะ...";
+            let i = 0;
+            const target = document.getElementById("typing-text");
+            function typing() {
+                if (i < text.length) {
+                    target.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, 150);
+                }
+            }
+            typing();
         }
     </script>
 </body>
