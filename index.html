@@ -1,53 +1,245 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>Valentine 💗</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for You ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-main: #ff85a1;
+            --pink-light: #fbb1bd;
+            --pink-dark: #ff4d6d;
+            --bg-color: #fff0f3;
+        }
 
-<style>
-body{
-  font-family: Arial;
-  text-align:center;
-  background:#ffe6f0;
-  padding-top:80px;
-}
+        body {
+            font-family: 'Mali', cursive;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #4a4a4a;
+        }
 
-.card{
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  width:300px;
-  margin:auto;
-}
-button{
-  padding:10px 20px;
-  margin:10px;
-  border:none;
-  border-radius:10px;
-}
-</style>
+        .container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(255, 133, 161, 0.2);
+            width: 90%;
+            max-width: 400px;
+            border: 5px solid var(--pink-light);
+            position: relative;
+        }
+
+        .page { display: none; }
+        .active { display: block; animation: fadeIn 0.8s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--pink-dark); font-size: 1.8rem; }
+        
+        button {
+            background-color: var(--pink-main);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Itim', cursive;
+            margin-top: 20px;
+        }
+
+        button:hover { background-color: var(--pink-dark); transform: scale(1.1); }
+
+        /* Loading Bar */
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            border-radius: 20px;
+            margin: 20px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink-light), var(--pink-dark));
+            transition: width 0.1s;
+        }
+
+        /* Passcode Input */
+        .passcode-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .num-btn {
+            background: #fff;
+            border: 2px solid var(--pink-light);
+            color: var(--pink-dark);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+        }
+
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid var(--pink-light);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+
+        .couple-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--pink-light);
+            margin-bottom: 10px;
+        }
+
+        .no-btn { position: relative; }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
-  <h2>สุขสันต์วันวาเลนไทน์นะครับ 💖</h2>
-  <p>พี่อยากขอหนูเป็นแฟนแบบจริงจัง 😆🫶🏻</p>
+    <div class="container">
+        <div id="page1" class="page active">
+            <img src="https://api.iconify.design/noto:wrapped-gift.svg" width="80">
+            <h1>Happy Valentine's Day</h1>
+            <p>มีอะไรจะให้ดูแหละ...</p>
+            <button onclick="goToLoading(2, 3000)">START</button>
+        </div>
 
-  <button onclick="yes()">ตกลง</button>
-  <button onclick="no()">No</button>
+        <div id="loadingPage" class="page">
+            <h1 id="loadText">Loading......</h1>
+            <div class="progress-container">
+                <div id="myBar" class="progress-bar"></div>
+            </div>
+            <p>รอแป๊บน้าาา...</p>
+        </div>
 
-  <p id="result"></p>
-</div>
+        <div id="page2" class="page">
+            <img src="couple.jpg" class="couple-img" alt="คู่รัก">
+            <p>ใส่รหัสผ่าน : วันเกิดเรา (0210)</p>
+            <input type="password" id="passInput" readonly>
+            <div class="passcode-grid" id="numpad">
+                </div>
+            <button onclick="checkPass()">ตกลง</button>
+        </div>
 
-<script>
-function yes(){
-  document.getElementById("result").innerHTML="เย้ เราเป็นกันแล้วนะ😘💕";
-}
-function no(){
-  document.getElementById("result").innerHTML="ไม่เป็นไรนะจะตามจีบจนกว่าจะได้เป็นแฟน 😬";
-}
-</script>
+        <div id="page3" class="page">
+            <img src="https://api.iconify.design/noto:smiling-face-with-heart-eyes.svg" width="80">
+            <h1>รหัสผ่านถูกต้อง</h1>
+            <h2 style="color: var(--pink-dark);">เธอเก่งที่สุดเลยค้าบ</h2>
+            <button onclick="goToLoading(4, 3000)">ไปกันต่อ</button>
+        </div>
 
+        <div id="page4" class="page">
+            <h1>หนูครับ...</h1>
+            <p>ขอบคุณที่อยู่ข้างกันมาตลอดนะ</p>
+            <p>วันนี้พี่อยากจะถามว่า...</p>
+            <h2 style="color: var(--pink-dark);">เป็นแฟนกับพี่นะ?</h2>
+            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                <button onclick="finalPage()">Yes</button>
+                <button class="no-btn" onmouseover="moveNo(this)" onclick="finalPage()">No</button>
+            </div>
+        </div>
+
+        <div id="page5" class="page">
+            <img src="https://api.iconify.design/noto:partying-face.svg" width="80">
+            <h1>เย้! เราเป็นแฟนกันแล้วนะ</h1>
+            <p>พี่สัญญาว่าจะรักหนูตลอดไป</p>
+            <h2 style="font-size: 2rem;">👨🏻‍🦰🫶🏻 👩🏻‍⚕️</h2>
+        </div>
+    </div>
+
+    <script>
+        // สร้างปุ่มตัวเลข
+        const numpad = document.getElementById('numpad');
+        for(let i=1; i<=9; i++) {
+            let btn = document.createElement('button');
+            btn.className = 'num-btn';
+            btn.innerText = i;
+            btn.onclick = () => document.getElementById('passInput').value += i;
+            numpad.appendChild(btn);
+        }
+        let zeroBtn = document.createElement('button');
+        zeroBtn.className = 'num-btn';
+        zeroBtn.innerText = '0';
+        zeroBtn.onclick = () => document.getElementById('passInput').value += '0';
+        numpad.appendChild(zeroBtn);
+
+        let clearBtn = document.createElement('button');
+        clearBtn.className = 'num-btn';
+        clearBtn.innerText = 'C';
+        clearBtn.onclick = () => document.getElementById('passInput').value = '';
+        numpad.appendChild(clearBtn);
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageId).classList.add('active');
+        }
+
+        function goToLoading(nextPage, duration) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('loadingPage').classList.add('active');
+            
+            let elem = document.getElementById("myBar");
+            let width = 0;
+            let interval = duration / 100;
+            let id = setInterval(frame, interval);
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    showPage(nextPage);
+                    elem.style.width = '0%';
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                }
+            }
+        }
+
+        function checkPass() {
+            const pass = document.getElementById('passInput').value;
+            if(pass === "0210") {
+                showPage(3);
+            } else {
+                alert("รหัสผิดนะจ๊ะ ลองใหม่ๆ");
+                document.getElementById('passInput').value = '';
+            }
+        }
+
+        function moveNo(btn) {
+            // ปุ่ม No จะหนีไปที่อื่น ทำให้กดไม่ได้จริงๆ
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function finalPage() {
+            showPage(5);
+        }
+    </script>
 </body>
 </html>
